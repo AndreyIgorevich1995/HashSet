@@ -1,28 +1,16 @@
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class WordsChecker {
-    protected static String text = "Lorem ipsum dolor sit amet," +
-            " consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-            " Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
-            " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
-            " Excepteur sint occaecat cupidatat non proident," +
-            " sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    protected static Set<String> set = new HashSet<>();
+    protected Set<String> set;
+    //Set<String> set = new HashSet<>();
 
-    public WordsChecker(String text, Set<String> set) {
-        this.text = text;
-        this.set = set;
-    }
-
-    public WordsChecker() {
-        this(text, set);
+    public WordsChecker(String text) {
+        set = new HashSet<>(List.of(text.split("\\P{IsAlphabetic}+")));
     }
 
     boolean hasWord(String word) {
-        for (String s : text.split("\\P{IsAlphabetic}+")) {
-            set.add(s);
-        }
         if (set.contains(word)) {
             return true;
         } else return false;
